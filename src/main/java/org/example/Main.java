@@ -13,8 +13,8 @@ public class Main extends Application {
         // Carrega o arquivo de layout
         Parent root = FXMLLoader.load(getClass().getResource("/view/TelaPrincipal.fxml"));
 
-        primaryStage.setTitle("Hello JavaFX");
-        primaryStage.setScene(new Scene(root, 300, 200));
+        primaryStage.setTitle("Install GoOS");
+        primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }
 
