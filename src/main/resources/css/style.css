@@ -1,0 +1,57 @@
+/* Estilo geral da lista */
+.list-view {
+    -fx-background-color: #e8e8e8; /* Fundo igual ao da janela */
+    -fx-border-color: #333333;
+    -fx-border-radius: 5;
+}
+
+/* Estilo de cada linha (Célula) */
+.list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-padding: 10;
+}
+
+/* QUANDO SELECIONAR: Escurece a linha */
+.list-view .list-cell:selected {
+    -fx-background-color: #ff0058; /* Um cinza bem escuro quase preto */
+    -fx-text-fill: #black;        /* O texto fica rosa neon para destacar */
+    -fx-font-weight: bold;         /* Deixa o texto em negrito */
+}
+
+/* Efeito opcional: Quando o mouse apenas passa por cima */
+.list-view .list-cell:hover {
+    -fx-background-color: #bdbdbd;
+}
+
+/* TRAVA A COR: Se estiver selecionado E passar o mouse, mantém o rosa */
+.list-view .list-cell:selected:hover {
+    -fx-background-color: #ff0058; /* Mantém a mesma cor da seleção */
+}
+
+/* Estilo da Paginação em pontos */
+.pagination .pagination-control .control-box .number-button {
+    -fx-background-color: #bdbdbd;
+    -fx-background-radius: 10;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-min-width: 8px;
+    -fx-min-height: 8px;
+    -fx-max-width: 8px;
+    -fx-max-height: 8px;
+    -fx-font-size: 0px; /* Esconde o texto */
+}
+
+.pagination .pagination-control .control-box .number-button:selected {
+    -fx-background-color: #ff0058;
+}
+
+.pagination .pagination-control .control-box .number-button .text {
+    -fx-opacity: 0; /* Esconde o texto com opacidade */
+}
+
+/* Remove efeito de foco */
+.pagination .pagination-control .control-box .number-button:focused {
+    -fx-background-insets: 0;
+}
+
