@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Carrega o arquivo de layout
-        Parent root = FXMLLoader.load(getClass().getResource("/view/TelaWelcome.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/TelaTimeZone.fxml"));
 
         primaryStage.setTitle("Install GoOS");
         primaryStage.setScene(new Scene(root, 600, 400));
