@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.WelcomeController">
    <children>
       <VBox alignment="CENTER" layoutX="127.0" layoutY="28.0" prefHeight="50.0" prefWidth="608.0" style="-fx-background-color: #3d3d3d;" AnchorPane.bottomAnchor="350.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -28,7 +28,7 @@
       <HBox alignment="CENTER" layoutX="175.0" layoutY="286.0" prefHeight="50.0" prefWidth="98.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="502.0" AnchorPane.topAnchor="350.0" />
       <HBox alignment="CENTER" layoutX="502.0" layoutY="350.0" prefHeight="50.0" prefWidth="98.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0">
          <children>
-            <Button id="bntNextWelcome" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-border-color: #ff0058; -fx-border-width: 1.5px; -fx-border-radius: 14; -fx-background-radius: 14;" text="Next">
+            <Button id="bntNextWelcome" fx:id="btnNext" focusTraversable="false" mnemonicParsing="false" onAction="#handleNext" prefHeight="25.0" prefWidth="77.0" style="-fx-border-color: #ff0058; -fx-border-width: 1.5px; -fx-border-radius: 14; -fx-background-radius: 14;" text="Next">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -80,7 +80,7 @@
          </items>
       </ListView>
       <Separator layoutX="214.0" layoutY="50.0" prefHeight="7.0" prefWidth="600.0" style="-fx-background-color: #ff0058; -fx-border-width: 23;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Pagination layoutX="194.0" layoutY="347.0" maxPageIndicatorCount="3" pageCount="3" prefHeight="45.0" prefWidth="213.0" style="-fx-page-information-visible: false; -fx-arrows-visible: false; -fx-background-color: transparent;" />
+      <Pagination currentPageIndex="0" layoutX="194.0" layoutY="347.0" maxPageIndicatorCount="3" pageCount="3" prefHeight="45.0" prefWidth="213.0" style="-fx-page-information-visible: false; -fx-arrows-visible: false; -fx-background-color: transparent;" />
       <Label layoutX="157.0" layoutY="177.0" prefHeight="50.0" prefWidth="175.0" text="GoOS">
          <font>
             <Font size="44.0" />
@@ -88,7 +88,7 @@
       </Label>
       <ImageView fitHeight="113.0" fitWidth="164.0" layoutX="16.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="images/cat_logo.png" />
+            <Image url="@../images/cat_logo.png" />
          </image>
       </ImageView>
    </children>
