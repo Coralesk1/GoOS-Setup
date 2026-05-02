@@ -15,7 +15,7 @@
 /* QUANDO SELECIONAR: Escurece a linha */
 .list-view .list-cell:selected {
     -fx-background-color: #ff0058; /* Um cinza bem escuro quase preto */
-    -fx-text-fill: #black;        /* O texto fica rosa neon para destacar */
+    -fx-text-fill: black;        /* O texto fica rosa neon para destacar */
     -fx-font-weight: bold;         /* Deixa o texto em negrito */
 }
 
