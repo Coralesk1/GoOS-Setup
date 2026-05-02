@@ -90,7 +90,7 @@ public class TimeZoneController {
 
     @FXML
     void handleNext(ActionEvent event) {
-        System.out.println("Next pressed: Região: " + cbRegiao.getValue() + ", Zona: " + cbZona.getValue());
+        System.out.println("idioma : " + ConfigInstalacao.getIdioma() + "\nregiao : " + ConfigInstalacao.getRegiao() + "\nzona: " + ConfigInstalacao.getZona());
     }
 
     @FXML
@@ -112,6 +112,20 @@ public class TimeZoneController {
 
     @FXML
     public void initialize() {
+        cbRegiao.getSelectionModel().select(ConfigInstalacao.getRegiao());
+        cbRegiao.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                ConfigInstalacao.setRegiao(newValue);
+            }
+        });
+
+        cbZona.getSelectionModel().select(ConfigInstalacao.getZona());
+        cbZona.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                ConfigInstalacao.setZona(newValue);
+            }
+        });
+
         limparMapa();
     }
 

@@ -40,7 +40,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <ListView fx:id="listLinguagens" layoutX="290.0" layoutY="99.0" prefHeight="226.0" prefWidth="286.0" >
+      <ListView fx:id="listIdiomas" layoutX="290.0" layoutY="99.0" prefHeight="226.0" prefWidth="286.0" >
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="Afrikaans" />
