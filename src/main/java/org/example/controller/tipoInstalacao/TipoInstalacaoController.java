@@ -81,36 +81,61 @@ public class TipoInstalacaoController {
     @FXML
     public void listaDiscos() {
         List<Disk> listaDeDiscos = new ArrayList<>();
+        String os = System.getProperty("os.name").toLowerCase();
 
         try {
-            // -d: apenas discos, -n: sem cabeçalho, -o: colunas escolhidas (incluindo FSTYPE)
-            Process process = new ProcessBuilder("lsblk", "-d", "-n", "-o", "NAME,MODEL,SIZE,FSTYPE").start();
+            Process process;
+            if (os.contains("win")) {
+                // Comando para Windows (PowerShell) - Retorna Número, Modelo, Tamanho
+                process = new ProcessBuilder("powershell", "-Command",
+                        "Get-Disk | ForEach-Object { '{0} {1} {2} Unknown' -f $_.Number, $_.FriendlyName.Replace(' ', '_'), $_.Size }").start();
+            } else {
+                // Comando para Linux (lsblk)
+                process = new ProcessBuilder("lsblk", "-d", "-n", "-o", "NAME,MODEL,SIZE,FSTYPE").start();
+            }
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
 
             while ((line = reader.readLine()) != null) {
-                // Trim tira espaços sobrando nas pontas
-                String[] partes = line.trim().split("\\s+", 4); // Divide em no máximo 4 partes
+                if (line.trim().isEmpty()) continue;
+                
+                String[] partes = line.trim().split("\\s+", 4);
 
                 if (partes.length >= 3) {
                     String nome = partes[0];
-                    // Se não houver modelo (alguns discos de VM não trazem modelo), coloca "Desconhecido"
-                    String modelo = (partes.length > 1) ? partes[1] : "Disco Genérico";
-                    String tamanho = (partes.length > 2) ? partes[2] : "0B";
-                    // Se não houver sistema de arquivos, define como "Vazio"
+                    String modelo = partes[1].replace("_", " ");
+                    String tamanhoRaw = partes[2];
                     String sistema = (partes.length > 3) ? partes[3] : "Vazio/Desconhecido";
 
-                    listaDeDiscos.add(new Disk(nome, modelo, tamanho, sistema));
+                    String tamanhoFormatado = formatarTamanho(tamanhoRaw);
+
+                    listaDeDiscos.add(new Disk(nome, modelo, tamanhoFormatado, sistema));
                 }
             }
 
-            // Atualiza a tabela na tela
             tableViewDiscos.getItems().setAll(listaDeDiscos);
 
         } catch (Exception e) {
             System.err.println("Erro ao listar discos: " + e.getMessage());
         }
+    }
+
+    private String formatarTamanho(String tamanhoRaw) {
+        try {
+            // Se for apenas números (bytes do PowerShell), formata.
+            // Se tiver letras (931.5G do lsblk), retorna como está.
+            if (tamanhoRaw.matches("\\d+")) {
+                long bytes = Long.parseLong(tamanhoRaw);
+                if (bytes < 1024) return bytes + " B";
+                int exp = (int) (Math.log(bytes) / Math.log(1024));
+                String pre = "KMGTPE".substring(exp - 1, exp);
+                return String.format("%.1f %sB", bytes / Math.pow(1024, exp), pre);
+            }
+        } catch (Exception e) {
+            // Caso ocorra erro na conversão, retorna o valor original
+        }
+        return tamanhoRaw;
     }
 
 }
