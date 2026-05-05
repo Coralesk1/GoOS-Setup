@@ -28,7 +28,7 @@
       <HBox alignment="CENTER" layoutX="175.0" layoutY="286.0" prefHeight="50.0" prefWidth="98.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="502.0" AnchorPane.topAnchor="350.0" />
       <HBox alignment="CENTER" layoutX="502.0" layoutY="350.0" prefHeight="50.0" prefWidth="98.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0">
          <children>
-            <Button id="bntNextWelcome" fx:id="btnNext" focusTraversable="false" mnemonicParsing="false" onAction="#handleNext" prefHeight="25.0" prefWidth="77.0" style="-fx-border-color: #ff0058; -fx-border-width: 1.5px; -fx-border-radius: 14; -fx-background-radius: 14;" text="Next">
+            <Button fx:id="btnNext" focusTraversable="false" mnemonicParsing="false" onAction="#handleNext" prefHeight="25.0" prefWidth="77.0" style="-fx-border-color: #ff0058; -fx-border-width: 1.5px; -fx-border-radius: 14; -fx-background-radius: 14;" text="Next">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

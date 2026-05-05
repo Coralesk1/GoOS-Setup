@@ -3,9 +3,7 @@ package org.example.controller;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -90,7 +88,20 @@ public class TimeZoneController {
 
     @FXML
     void handleNext(ActionEvent event) {
-        System.out.println("idioma : " + ConfigInstalacao.getIdioma() + "\nregiao : " + ConfigInstalacao.getRegiao() + "\nzona: " + ConfigInstalacao.getZona());
+
+        String regiao = cbRegiao.getSelectionModel().getSelectedItem();
+        String zona = cbZona.getSelectionModel().getSelectedItem();
+
+        if (regiao == null || regiao.isEmpty() || zona == null || zona.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Seleção Necessária");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor, selecione uma região e uma zona.");
+            alert.showAndWait();
+            return;
+        }
+
+        Navigation.navigate("/view/TelaTipoInstalacao.fxml");
     }
 
     @FXML
@@ -177,7 +188,9 @@ public class TimeZoneController {
 
     @FXML
     public void atualizarZonas(String regiao) {
-        if (regiao == null) return;
+        if (regiao == null){
+            return;
+        }
 
         switch (regiao) {
             case "África":
