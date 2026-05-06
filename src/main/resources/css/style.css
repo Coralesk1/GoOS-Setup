@@ -51,7 +51,21 @@
 }
 
 /* Remove efeito de foco */
-.pagination .pagination-control .control-box .number-button:focused {
-    -fx-background-insets: 0;
+/* Estilo da ProgressBar */
+.progress-bar .bar {
+    -fx-background-color: #ff0058;
+}
+
+.progress-bar .track {
+    -fx-background-color: #e8e8e8;
+    -fx-border-color: #3d3d3d;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+/* Estilo para TableView */
+.table-view .table-row-cell:selected {
+    -fx-background-color: #ff0058;
+    -fx-text-background-color: white;
 }
 

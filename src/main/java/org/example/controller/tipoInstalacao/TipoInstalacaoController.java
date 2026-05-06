@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -34,6 +36,12 @@ public class TipoInstalacaoController {
     @FXML
     private TableColumn<Disk, String> colSistema;
 
+    @FXML
+    private RadioButton radioApagarDisco;
+
+    @FXML
+    private CheckBox checkTermos;
+
 
     @FXML
     public void initialize() throws IOException {
@@ -60,22 +68,32 @@ public class TipoInstalacaoController {
 
     @FXML
     void handleNext(ActionEvent event) {
+        Disk discoSelecionado = tableViewDiscos.getSelectionModel().getSelectedItem();
 
-        /*validar se selelecionou agum disco*/
-
-        /*if (idiomaSelecionado == null || idiomaSelecionado.isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Seleção Necessária");
-            alert.setHeaderText(null);
-            alert.setContentText("Por favor, selecione um idioma antes de continuar.");
-            alert.showAndWait();
+        if (discoSelecionado == null) {
+            exibirAlerta("Seleção Necessária", "Por favor, selecione um disco na tabela antes de continuar.");
             return;
-        }*/
+        }
 
+        if (!radioApagarDisco.isSelected()) {
+            exibirAlerta("Opção Necessária", "Por favor, selecione a opção 'Apagar disco inteiro' para prosseguir.");
+            return;
+        }
 
-        /*Navigation.navigate("/view/TelaTimeZone.fxml");*/
+        if (!checkTermos.isSelected()) {
+            exibirAlerta("Termos Necessários", "Você deve aceitar os termos de que todos os dados serão apagados.");
+            return;
+        }
 
-        System.out.println("Fim da navegação.");
+        Navigation.navigate("/view/TelaInstalando.fxml");
+    }
+
+    private void exibirAlerta(String titulo, String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 
     @FXML
